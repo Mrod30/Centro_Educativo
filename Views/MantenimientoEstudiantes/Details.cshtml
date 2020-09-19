@@ -1,0 +1,74 @@
+﻿@model Centro_Educativo.Models.Estudiantes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estudiantes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EstudianteNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstudianteNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstudianteApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstudianteApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstudianteDireccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstudianteDireccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstudianteTelefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstudianteTelefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstudianteCorreo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstudianteCorreo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cursos.CursoNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cursos.CursoNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.UsuarioNombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EstudianteID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

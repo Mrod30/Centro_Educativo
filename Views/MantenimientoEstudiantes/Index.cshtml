@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Centro_Educativo.Models.Estudiantes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mantenimiento Estudiantes</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EstudianteNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstudianteApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstudianteDireccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstudianteTelefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstudianteCorreo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cursos.CursoNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.UsuarioNombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstudianteNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstudianteApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstudianteDireccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstudianteTelefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstudianteCorreo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cursos.CursoNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.UsuarioNombre)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.EstudianteID }, new { @class = "glyphicon glyphicon-edit" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.EstudianteID }, new { @class = "glyphicon glyphicon-th-list" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.EstudianteID }, new { @class = "glyphicon glyphicon-trash" })
+        </td>
+    </tr>
+}
+
+</table>

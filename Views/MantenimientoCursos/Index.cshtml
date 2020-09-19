@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Centro_Educativo.Models.Cursos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mantenimiento de Cursos</h2>
+
+@*search o filter*@
+<div class="row">
+    <div class="col-sm-2">
+        <p>
+            @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+        </p>
+    </div>
+
+    <div class="col-sm-10">
+        <input class="form-control" id="input_search" name="search" type="text" placeholder="Busqueda..." />
+    </div>
+</div>
+@*Grid o table*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CursoNombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CursoNombre)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.CursoID }, new { @class = "glyphicon glyphicon-edit" }) |
+                @Html.ActionLink(" ", "Details", new { id = item.CursoID }, new { @class = "glyphicon glyphicon-th-list" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.CursoID }, new { @class = "glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }
+
+</table>
+@*Realiza la busqueda, en la tabla*@
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#input_search").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#table_body tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+    </script>
+
+
+}

@@ -1,0 +1,74 @@
+﻿@model Centro_Educativo.Models.Profesores
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profesores</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfesorNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfesorNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfesorApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfesorApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfesorTelefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfesorTelefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfesorCedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfesorCedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfesorCorreo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfesorCorreo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materias.MateriaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materias.MateriaNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuarios.UsuarioNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuarios.UsuarioNombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProfesorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

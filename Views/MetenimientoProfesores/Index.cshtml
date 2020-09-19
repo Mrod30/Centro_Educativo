@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Centro_Educativo.Models.Profesores>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mantenimiento Profesores</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfesorNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfesorApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfesorTelefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfesorCedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfesorCorreo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Materias.MateriaNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.UsuarioNombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfesorNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfesorApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfesorTelefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfesorCedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfesorCorreo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Materias.MateriaNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.UsuarioNombre)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.ProfesorID }, new { @class = "glyphicon glyphicon-edit" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.ProfesorID }, new { @class = "glyphicon glyphicon-th-list" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.ProfesorID }, new { @class = "glyphicon glyphicon-trash" })
+        </td>
+    </tr>
+}
+
+</table>

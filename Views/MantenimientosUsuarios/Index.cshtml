@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Centro_Educativo.Models.Usuarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mantenimiento Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioPassword)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioPassword)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.UsuarioID }, new { @class = "glyphicon glyphicon-edit" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.UsuarioID }, new { @class = "glyphicon glyphicon-th-list" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.UsuarioID }, new { @class = "glyphicon glyphicon-trash" })
+        </td>
+    </tr>
+}
+
+</table>

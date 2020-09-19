@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+
+        .page-header {
+            background-color: #0054a5;
+        }
+
+        .navbar.navbar-inverse {
+
+            background-color: #0054a5;
+        }
+
+        body{
+            margin-bottom:0;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Pagina Principal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Acerca de...
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Estructura del Politécnico", "Estructurapoli", "Home")</li>
+                            <li>@Html.ActionLink("Organismos de Participación", "OrganismosP", "Home")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Requisitos De Admision", "Admision", "Home")</li>
+                </ul>
+                @if (Session["UsuarioNombre"] != null && (Session["UsuarioNombre"].ToString() == "Admin" || Session["UsuarioNombre"].ToString() == "admin"))
+                {
+                    <ul class="nav navbar-nav">
+
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Mantenimientos
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Mantenimiento Estudiantes", "Index", "MantenimientoEstudiantes")</li>
+                                <li>@Html.ActionLink("Mantenimiento Profesores", "Index", "MetenimientoProfesores")</li>
+                                <li>@Html.ActionLink("Mantenimiento Cursos", "Index", "MantenimientoCursos")</li>
+                                <li>@Html.ActionLink("Mantenimiento Materias", "Index", "MantenimientoMaterias")</li>
+                                <li>@Html.ActionLink("Mantenimiento Usuarios", "Index", "MantenimientosUsuarios")</li>
+                            </ul>
+                    </ul>
+                }
+
+
+                <ul class="nav navbar-nav pull-right">
+                    @if (Session["UsuarioNombre"] != null)
+                    {
+                        <li>@Html.ActionLink("Log Out", "Logout", "Usuarios")</li>
+                        <li>Bienvenido @Session["UsuarioNombre"].ToString()</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Crear Usuario", "CrearUsuario", "Usuarios")</li>
+                        <li>@Html.ActionLink("Iniciar Sesion", "IniciarSesion", "Usuarios")</li>
+                    }
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <br />
+    <footer style="background-color: #0054a5; bottom:0" class="">
+        <div class="container-fluid">
+            <br /><br /><br />
+            <p style="color:#ffffff;">&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <br /><br /><br />
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

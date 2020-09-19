@@ -1,0 +1,283 @@
+﻿
+@{
+    ViewBag.Title = "CrearUsuario";
+}
+
+<style>
+    .error{
+        color:red;
+    }
+    input[type="text"]{
+        color:#444;
+    }
+</style>
+
+<h2>Crear Usuario</h2>
+
+<div class="container">
+    <h2 class="text-center">¿Eres estudiante o profesor?</h2>
+    <div class="row">
+        <div class="form-group" style="text-align:center;">
+            <button class="btn btn-primary btn-lg" onclick="CrearEstudiante()" style="margin:10px; padding:10px;">Estudiante</button>
+            <button class="btn btn-primary btn-lg" id="btn-profesor" style="margin:10px; padding:10px;">Profesor</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ModalEstudiantes">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Crear Usuario estudiante</h2>
+            </div>
+            <div class="modal-body">
+                <form id="formEstudiante">
+                    <div class="form-group">
+                        <label for="NombreEstudiante">Nombre</label>
+                        <input class="form-control" type="text" name="NombreEstudiante" id="EstudianteNombre" placeholder="Escribir nombre" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ApellidoEstudiante">Apellido</label>
+                        <input class="form-control" type="text" name="ApellidoEstudiante" id="EstudianteApellido" placeholder="Escribir apellido" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DireccionEstudiante">Direccion</label>
+                        <input class="form-control" type="text" name="DireccionEstudiante" id="EstudianteDireccion" placeholder="Escribir direccion" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TelefonoEstudiante">Telefono</label>
+                        <input class="form-control" type="text" name="TelefonoEstudiante" id="EstudianteTelefono" placeholder="Escribir telefono" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CorreoEstudiante">Correo</label>
+                        <input class="form-control" type="text" name="CorreoEstudiante" id="EstudianteCorreo" placeholder="Escribir correo" required />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="hidden" id="UsuarioID" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Curso">Curso</label>
+                        <select class="form-control" name="Curso" id="CursoID">
+                            <option>Seleccionar Curso</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button class="btn btn-success" id="btn-estudiante">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalProfesores">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Crear Usuario profesor</h2>
+            </div>
+            <div class="modal-body">
+                <form id="formProfesor">
+                    <div class="form-group">
+                        <label for="NombreProfesor">Nombre</label>
+                        <input class="form-control" type="text" name="NombreProfesor" id="ProfesorNombre" placeholder="Escribir nombre" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ApellidoProfesor">Apellido</label>
+                        <input class="form-control" type="text" name="ApellidoProfesor" id="ProfesorApellido" placeholder="Escribir apellido" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TelefonoProfesor">Telefono</label>
+                        <input class="form-control" type="text" name="TelefonoProfesor" id="ProfesorTelefono" placeholder="Escribir telefono" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CedulaProfesor">Cedula</label>
+                        <input class="form-control" type="text" name="CedulaProfesor" id="ProfesorCedula" placeholder="Escribir cedula" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CorreoProfesor">Correo</label>
+                        <input class="form-control" type="text" name="CorreoProfesor" id="ProfesorCorreo" placeholder="Escribir correo" required />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="hidden" id="UsuarioID" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Materia">Materia</label>
+                        <select class="form-control" name="Materia" id="MateriaID">
+                            <option>Seleccionar materia</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button class="btn btn-success" onclick="CrearProfesores()">Enviar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+<script>
+
+    $(document).ready(() => {
+        getCursos();
+        getMaterias();
+        validateEstudiante();
+
+    })
+
+    $("#btn-estudiante").click(() => {
+        if ($("#formEstudiante").valid()) {
+            var urlEstudiante = "/Usuarios/getCrearUsuarioEstudiante";
+            var datos = {
+                EstudianteNombre: $("#EstudianteNombre").val(),
+                EstudianteApellido: $("#EstudianteApellido").val(),
+                EstudianteDireccion: $("#EstudianteDireccion").val(),
+                EstudianteTelefono: $("#EstudianteTelefono").val(),
+                EstudianteCorreo: $("#EstudianteCorreo").val(),
+                CursoID: $("#CursoID").val()
+            }
+            $.post(urlEstudiante, datos, (value) => {
+                var urlCrearEstudiante = "/Usuarios/getCrearEstudiante";
+                $.post(urlCrearEstudiante, datos, (value) => {
+                    alert("Usuario Creado correctamente")
+                })
+
+            })
+        }
+
+    })
+
+    $("#btn-profesor").click(() => {
+        $("#ModalProfesores").modal()
+    })
+
+    $("#CrearEstudiante").click(() => {
+        validateEstudiante();
+    })
+    
+
+    function CrearEstudiante() {
+
+        $("#ModalEstudiantes").modal()
+
+
+
+    }
+
+    function CrearProfesores() {
+
+        if ($("#formProfesor").valid()) {
+            var urlProfesor = "/Usuarios/getCrearUsuarioProfesor";
+            var datos = {
+                ProfesorNombre: $("#ProfesorNombre").val(),
+                ProfesorApellido: $("#ProfesorApellido").val(),
+                ProfesorTelefono: $("#ProfesorTelefono").val(),
+                ProfesorCedula: $("#ProfesorCedula").val(),
+                ProfesorCorreo: $("#ProfesorCorreo").val(),
+                MateriaID: $("#MateriaID").val()
+            }
+            $.post(urlProfesor, datos, (value) => {
+                var urlCrearProfesor = "/Usuarios/getCrearProfesor";
+                $.post(urlCrearProfesor, datos, (value) => {
+                    alert("Usuario Creado correctamente")
+                })
+
+            })
+        }
+    }
+
+    function getCursos() {
+        var urlgetCursos = "/Usuarios/getCursos";
+        $.get(urlgetCursos, (data) => {
+            $.each(data, (index, value) => {
+                var Curso = `
+                    <option value="${value.CursoID}">${value.CursoNombre}</option>
+                    `;
+
+                $("#CursoID").append(Curso);
+            })
+        })
+    }
+
+    function getMaterias() {
+        var urlgetMaterias = "/Usuarios/getMaterias";
+        $.get(urlgetMaterias, (data) => {
+            $.each(data, (index, value) => {
+                var Materia = `
+                    <option value="${value.MateriaID}">${value.MateriaNombre}</option>
+                    `;
+
+                $("#MateriaID").append(Materia);
+            })
+        })
+    }
+
+    function validateEstudiante() {
+        $("#formEstudiante").validate({
+            rules: {
+                NombreEstudiante: { required: true },
+                ApellidoEstudiante: { required: true },
+                DireccionEstudiante: { required: true },
+                TelefonoEstudiante: { required: true, minlength: 10, maxlength: 10 },
+                CorreoEstudiante: { required: true, email: true }
+
+            },
+            messages: {
+                NombreEstudiante: "El campo es obligatorio.",
+                ApellidoEstudiante: "El campo es obligatorio",
+                DireccionEstudiante: "El campo es obligatorio",
+                TelefonoEstudiante: "El campo Teléfono no contiene un formato correcto.",
+                CorreoEstudiante: "El campo es obligatorio y debe tener formato de email correcto."
+
+            },
+            errorElement: 'div'
+        });
+    }
+
+    function validateProfesor() {
+        $("#formProfesor").validate({
+            rules: {
+                NombreProfesor: { required: true },
+                ApellidoProfesor: { required: true },
+                TelefonoProfesor: { required: true },
+                CedulaProfesor: { required: true, minlength: 10, maxlength: 10 },
+                CorreoProfesor: { required: true, email: true }
+
+            },
+            messages: {
+                NombreProfesor: "El campo es obligatorio.",
+                ApellidoProfesor: "El campo es obligatorio",
+                TelefonoProfesor: "El campo Teléfono no contiene un formato correcto.",
+                CedulaProfesor: "El campo es obligatorio",
+                CorreoProfesor: "El campo es obligatorio y debe tener formato de email correcto."
+
+            },
+            errorElement: 'div'
+        });
+    }
+
+
+</script>

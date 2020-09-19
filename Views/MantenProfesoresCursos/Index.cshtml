@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Centro_Educativo.Models.ProfesoresCursos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cursos.CursoNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Profesores.ProfesorNombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cursos.CursoNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profesores.ProfesorNombre)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.ProfesorCursoID }, new { @class = "glyphicon glyphicon-edit" }) |
+            @Html.ActionLink(" ", "Details", new { id=item.ProfesorCursoID }, new { @class = "glyphicon glyphicon-th-list" }) |
+            @Html.ActionLink(" ", "Delete", new { id=item.ProfesorCursoID }, new { @class = "glyphicon glyphicon-trash" })
+        </td>
+    </tr>
+}
+
+</table>

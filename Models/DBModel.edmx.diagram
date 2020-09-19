@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e5d9cfa6f684799a647fa766dc0d863" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="educativoModel.Cursos" Width="1.5" PointX="1.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="educativoModel.Estudiantes" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="educativoModel.EstudiantesMaterias" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="educativoModel.Materias" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="educativoModel.Profesores" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="educativoModel.ProfesoresCursos" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="educativoModel.Usuarios" Width="1.5" PointX="1.5" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="educativoModel.FK__Estudiant__Curso__0C85DE4D" ManuallyRouted="false" />
+        <AssociationConnector Association="educativoModel.FK__Profesore__Curso__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="educativoModel.FK__Estudiant__Estud__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="educativoModel.FK__Estudiant__Usuar__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="educativoModel.FK__Estudiant__Mater__151B244E" ManuallyRouted="false" />
+        <AssociationConnector Association="educativoModel.FK__Profesore__Mater__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="educativoModel.FK__Profesore__Profe__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="educativoModel.FK__Profesore__Usuar__10566F31" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

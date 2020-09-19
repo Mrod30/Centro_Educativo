@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Centro_Educativo.Models.EstudiantesMaterias>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mantenimiento Estudiantes Materias</h2>
+@*search o filter*@
+<div class="row">
+    <div class="col-sm-2">
+        <p>
+            @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "btn btn-success" })
+        </p>
+    </div>
+
+    <div class="col-sm-10">
+        <input class="form-control" id="input_search" name="search" type="text" placeholder="Busqueda..." />
+    </div>
+
+</div>
+
+@*Grid o table*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Estudiantes.EstudianteNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Materias.MateriaNombre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estudiantes.EstudianteNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Materias.MateriaNombre)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.EstudianteMateriaID }, new { @class = "glyphicon glyphicon-edit" }) |
+                @Html.ActionLink(" ", "Details", new { id = item.EstudianteMateriaID }, new { @class = "glyphicon glyphicon-th-list" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.EstudianteMateriaID }, new { @class = "glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }
+
+</table>
+@*Realiza la busqueda, en la tabla*@
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#input_search").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#table_body tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+    </script>
+
+
+}
